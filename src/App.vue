@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>UoE Datepicker</h1>
+      <b-field label="Select a date">
+        <b-datepicker
+          placeholder="Type or select a date..."
+          icon="calendar-today"
+          focusable="false"
+          v-model="today"
+          trap-focus
+          editable>
+        </b-datepicker>
+    </b-field>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      today: null
+    }
   }
 }
 </script>
