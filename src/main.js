@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import { Datepicker, Field } from 'buefy'
-import 'buefy/dist/buefy.css'
 
-Vue.use(Datepicker)
-Vue.use(Field)
+// Import Duet Date Picker
+import { defineCustomElements } from "@duetds/date-picker/dist/loader";
 
-Vue.config.productionTip = false
+// ...
+// configure Vue.js to ignore Duet Date Picker
+Vue.config.ignoredElements = [/duet-\w*/];
+
+// Register Duet Date Picker
+defineCustomElements(window);
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  render: h => h(App)
+}).$mount("#app");

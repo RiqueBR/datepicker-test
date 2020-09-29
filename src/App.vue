@@ -1,16 +1,8 @@
 <template>
   <div id="app">
-    <h1>UoE Datepicker</h1>
-      <b-field label="Select a date">
-        <b-datepicker
-          placeholder="Type or select a date..."
-          icon="calendar-today"
-          focusable="false"
-          v-model="today"
-          trap-focus
-          editable>
-        </b-datepicker>
-    </b-field>
+    <h1>UoE Datepicker - duet date picker</h1>
+    <duet-date-picker 
+      :localization="localization_uk"/>
   </div>
 </template>
 
@@ -20,8 +12,16 @@ export default {
   name: 'App',
   data() {
     return {
-      today: null
+      localization_uk: {
+        placeholder: 'DD/MM/YYYY'
+      }
     }
+  },
+  mounted() {
+    // const picker = document.querySelector("duet-date-picker")
+    // picker.localization = { // This will return an undefined
+    //   placeholder: 'DD/MM/YYYY'
+    // }
   }
 }
 </script>
