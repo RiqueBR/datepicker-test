@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h1>UoE Datepicker - duet date picker</h1>
-    <duet-date-picker 
+    <duet-date-picker
+      :dateAdapter="format_date()"
       :localization="localization_uk"/>
   </div>
 </template>
@@ -14,14 +15,25 @@ export default {
     return {
       localization_uk: {
         placeholder: 'DD/MM/YYYY'
+        //...more to come
       }
     }
   },
-  mounted() {
-    // const picker = document.querySelector("duet-date-picker")
-    // picker.localization = { // This will return an undefined
-    //   placeholder: 'DD/MM/YYYY'
-    // }
+  methods: {
+    format_date: function() {
+      const DATE_REGEX = /^20[0-9]{2}-[0,1][0-9]-[0-3][0-9]$/;
+      return {
+        parse(value = '', createDate) {
+          const validated = value.match(DATE_REGEX);
+          if (validated) {
+            return createDate(validated[3], validated[2], validated[1]);
+          }
+        },
+        format(date) {
+          return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        }
+      };
+    }
   }
 }
 </script>
